@@ -33,4 +33,12 @@ var findNumbers = function (nums) {
   }
 
   // i, j 중 어느하나는 끝에 도달함.
+  // j가 끝에 달한 경우
+  if (j < 0) {
+    for (let k = i; k < nums.length; k++) {
+      result.push(nums[k] * nums[k]);
+    }
+  } else {
+    // i가 끝에 달한 경우
+  }
 };
