@@ -10,11 +10,9 @@
  * @param {ListNode} l2
  * @return {ListNode}
  */
-
-// result를 linkedList 형식으로 만드는것에 어려움을 겪고 있음
 var addTwoNumbers = function (l1, l2) {
-  let result = new ListNode();
-  let currentResult = result;
+  let currentNode = new ListNode();
+  let headNode = currentNode;
 
   // 각 자리의 합이 10이 넘으면 true로 바꿔줌
   let add10 = false;
@@ -32,8 +30,10 @@ var addTwoNumbers = function (l1, l2) {
     } else {
       add10 = false;
     }
-    result.next = sum;
-    currentResult = result.next;
+
+    let newNode = new ListNode(sum);
+    currentNode.next = newNode;
+    currentNode = newNode;
   } while (l1 && l2);
 
   if (l1) {
@@ -48,8 +48,9 @@ var addTwoNumbers = function (l1, l2) {
       } else {
         add10 = false;
       }
-      result.next = sum;
-      currentResult = result.next;
+      let newNode = new ListNode(sum);
+      currentNode.next = newNode;
+      currentNode = newNode;
     }
   } else if (l2) {
     while (l2) {
@@ -63,15 +64,24 @@ var addTwoNumbers = function (l1, l2) {
       } else {
         add10 = false;
       }
-      result.next = sum;
-      currentResult = result.next;
+      let newNode = new ListNode(sum);
+      currentNode.next = newNode;
+      currentNode = newNode;
     }
   } else {
     if (add10) {
-      result.next = 1;
-      currentResult = result.next;
+      let newNode = new ListNode(1);
+      currentNode.next = newNode;
+      currentNode = newNode;
     }
   }
 
-  return result;
+  // 마지막으로 add10 체크
+  if (add10) {
+    let newNode = new ListNode(1);
+    currentNode.next = newNode;
+    currentNode = newNode;
+  }
+
+  return headNode.next;
 };
