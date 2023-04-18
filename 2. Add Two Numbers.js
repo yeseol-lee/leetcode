@@ -73,6 +73,8 @@ var addTwoNumbers = function (l1, l2) {
       let newNode = new ListNode(1);
       currentNode.next = newNode;
       currentNode = newNode;
+
+      add10 = false;
     }
   }
 
